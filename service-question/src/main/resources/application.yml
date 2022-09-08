@@ -1,0 +1,25 @@
+server:
+  port: 8201
+spring:
+  application:
+    name: service-question
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/logindemo
+    username: root
+    password: 123456
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+
