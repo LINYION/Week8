@@ -21,6 +21,7 @@ import reactor.core.publisher.Mono;
 public class LoginFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        System.out.println("进入到全局过滤器了........");
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         String path = request.getURI().getPath();
@@ -33,10 +34,13 @@ public class LoginFilter implements GlobalFilter, Ordered {
             JWTUtils.verify(token);
             return chain.filter(exchange);
         } catch (TokenExpiredException e) {
+            e.printStackTrace();
             return getMono(response, "Token已经过期");
         } catch (SignatureVerificationException e){
+            e.printStackTrace();
             return getMono(response, "签名错误");
         } catch (AlgorithmMismatchException e) {
+            e.printStackTrace();
             return getMono(response, "加密算法不匹配");
         } catch (Exception e) {
             e.printStackTrace();

@@ -2,7 +2,7 @@ server:
   port: 8301
 spring:
   application:
-    name: user
+    name: service-user
   redis:
     database: 0
     host: 127.0.0.1
@@ -22,3 +22,4 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8888/eureka
+
