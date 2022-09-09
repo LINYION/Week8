@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping
+@RequestMapping("follow")
 public class FollowController {
     @Resource
     private RedisService redisService;
@@ -17,8 +17,8 @@ public class FollowController {
      * @param followedId
      * @param followerId
      */
-    @GetMapping(value = "/follow/{followedId}/{followerId}")
-    public void follow(@PathVariable ("followedId") String followedId,
+    @GetMapping(value = "/save/{followedId}/{followerId}")
+    public void save(@PathVariable ("followedId") String followedId,
                        @PathVariable ("followerId") String followerId){
         redisService.saveFollow(followedId,followerId);
     }
@@ -28,8 +28,8 @@ public class FollowController {
      * @param followedId
      * @param followerId
      */
-    @PostMapping(value = "/unfollow/{followedId}/{followerId}")
-    public void unfollow(@PathVariable ("followedId") String followedId,
+    @PostMapping(value = "/cancel/{followedId}/{followerId}")
+    public void cancel(@PathVariable ("followedId") String followedId,
                          @PathVariable ("followerId") String followerId){
         redisService.unFollow(followedId,followerId);
     }

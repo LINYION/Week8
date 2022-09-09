@@ -7,3 +7,26 @@ eureka:
 spring:
   application:
     name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: service-comment
+          uri: http://localhost:8101/comment/**
+          predicates:
+            - Path=/comment/**
+        - id: service-user
+          uri: http://localhost:8301/user/**
+          predicates:
+            - Path=/user/**
+        - id: service-question
+          uri: http://localhost:8201/question/**
+          predicates:
+            - Path=/question/**
+        - id: service-follow
+          uri: http://localhost:8301/follow/**
+          predicates:
+            - Path=/follow/**
+        - id: service-like
+          uri: http://localhost:8201/like/**
+          predicates:
+            - Path=/like/**

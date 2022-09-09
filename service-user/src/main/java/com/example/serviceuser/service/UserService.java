@@ -5,20 +5,18 @@ import com.example.common.utils.JWTUtils;
 import com.example.common.utils.Result;
 import com.example.serviceuser.entity.User;
 import com.example.serviceuser.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import javax.annotation.Resource;
+import java.util.*;
 
 @Service
 @Transactional(rollbackFor = RuntimeException.class)
 public class UserService {
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
     /**
      * 注册
@@ -66,6 +64,8 @@ public class UserService {
                 Map<String, String> map = new HashMap<>();//用来存放payload
                 map.put("id", String.valueOf(user.getId()));
                 map.put("username",user.getUsername());
+                Date now = new Date();
+                map.put("now", String.valueOf(now.getTime()));
                 user.setToken(JWTUtils.getToken(map));
                 result.setDetail(user);
             }

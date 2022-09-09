@@ -3,13 +3,13 @@ package com.example.servicecomment.controller;
 import com.example.common.utils.Result;
 import com.example.common.entity.Comment;
 import com.example.servicecomment.service.CommentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
-    @Autowired
+    @Resource
     private CommentService commentService;
 
     /**

@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping
+@RequestMapping("like")
 public class LikesController {
     @Resource
     private RedisService redisService;
 
-    @GetMapping(value = "/like/{AnswerId}/{userId}")
-    public void like(@PathVariable ("AnswerId") String AnswerId,
+    @GetMapping(value = "/save/{AnswerId}/{userId}")
+    public void save(@PathVariable ("AnswerId") String AnswerId,
                      @PathVariable ("userId") String userId){
         redisService.saveLike(AnswerId,userId);
     }
 
-    @GetMapping(value = "/unlike/{AnswerId}/{userId}")
-    public void unlike(@PathVariable ("AnswerId") String AnswerId,
+    @GetMapping(value = "/cancel/{AnswerId}/{userId}")
+    public void cancel(@PathVariable ("AnswerId") String AnswerId,
                      @PathVariable ("userId") String userId){
         redisService.unLike(AnswerId,userId);
     }
